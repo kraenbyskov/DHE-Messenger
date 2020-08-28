@@ -1,15 +1,18 @@
 import React from "react";
+import { MainStyle } from "./Main.module.scss";
 
-const Main = ({ children }) => {
+const Main = ({ children, signOut, user, signInWithGoogle }) => {
   return (
-    <div>
+    <div className={MainStyle}>
       {React.Children.map(children, (child) => {
         return child.props
           ? React.createElement(child.type, {
               ...{
                 ...child.props,
                 key: child.props.name,
-                message: "a Goat",
+                signOut: signOut,
+                user: user,
+                signInWithGoogle: signInWithGoogle,
               },
             })
           : child;
