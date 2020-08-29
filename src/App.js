@@ -19,8 +19,6 @@ function App(props) {
     GetUserData(user, SetUserData);
   }, [user]);
 
-  console.log(UserData);
-
   return (
     <BrowserRouter>
       <Main signOut={signOut} user={user} signInWithGoogle={signInWithGoogle}>

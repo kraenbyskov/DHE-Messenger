@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { LeftSidebarStyle } from "./LeftSidebar.module.scss";
-import AddNewChannnel from "../AddNewChannel";
-import ListOfChannels from "../ListOfChannels";
+import AddNewChannnel from "../LeftSidebar/AddNewChannel";
+import ListOfChannels from "../LeftSidebar/ListOfChannels";
 
 const LeftSidebar = ({ SelectChannel }) => {
   const [AddChannelWindow, setAddChannelWindow] = useState(false);

@@ -1,6 +1,6 @@
 import React from "react";
-import { Form, Textarea, Button } from "../InputFields/Input";
-import { firebase } from "../../Global/Firebase/config";
+import { Form, Textarea, Button } from "../../InputFields/Input";
+import { firebase } from "../../../Global/Firebase/config";
 import Style from "./SendMessage.module.scss";
 
 const SendMessage = ({ user, ChannelSelection }) => {

@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import { ChatStyle } from "./Chat.module.scss";
 import { firebase } from "../../Global/Firebase/config";
 import "firebase/auth";
-import DisplayMessages from "../DisplayMessages/DisplayMessages";
-import SendMessage from "../SendMessage/SendMessage";
+import DisplayMessages from "../Chat/DisplayMessages/DisplayMessages";
+import SendMessage from "../Chat/SendMessage/SendMessage";
 
 const Chat = (props) => {
   const { user, ChannelSelection } = props;
-  console.log("Chat -> ChannelSelection", user);
   const [GetData, setGetData] = useState(null);
 
   useEffect(() => {

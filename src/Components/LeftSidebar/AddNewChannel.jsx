@@ -1,6 +1,6 @@
 import React from "react";
-import { firebase } from "../Global/Firebase/config";
-import { Form, Text, Button } from "./InputFields/Input";
+import { firebase } from "../../Global/Firebase/config";
+import { Form, Text, Button } from "../InputFields/Input";
 
 const ChannelStyle = {
   background: "green",
@@ -9,6 +9,7 @@ const ChannelStyle = {
   height: "auto",
   left: "50%",
   top: "50%",
+  zIndex: "1000",
   transform: "translate(-50%,-50%)",
   padding: "20px",
 };

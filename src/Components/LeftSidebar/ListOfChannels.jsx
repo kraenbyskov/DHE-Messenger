@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { firebase } from "../Global/Firebase/config";
+import { firebase } from "../../Global/Firebase/config";
 
 const ListOfChannels = ({ SelectChannel }) => {
   const [ListAllChannels, setListAllChannels] = useState();
