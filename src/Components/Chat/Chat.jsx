@@ -7,7 +7,7 @@ import SendMessage from "../SendMessage/SendMessage";
 
 const Chat = (props) => {
   const { user, ChannelSelection } = props;
-  console.log("Chat -> ChannelSelection", ChannelSelection);
+  console.log("Chat -> ChannelSelection", user);
   const [GetData, setGetData] = useState(null);
 
   useEffect(() => {
@@ -21,11 +21,12 @@ const Chat = (props) => {
       const onCollection = (querySnapshot) => {
         const Data = [];
         querySnapshot.forEach((doc) => {
-          const { User, Message } = doc.data();
+          const { User, Message, Photo } = doc.data();
           Data.push({
             id: doc.id,
             Message,
             User,
+            Photo,
           });
           setGetData({ Data });
         });
@@ -36,11 +37,12 @@ const Chat = (props) => {
 
   return (
     <div className={ChatStyle}>
-      <DisplayMessages Data={GetData} userName={user.displayName} />
-      <SendMessage
-        userName={user.displayName}
-        ChannelSelection={ChannelSelection}
-      />
+      {ChannelSelection ? (
+        <div>
+          <DisplayMessages Data={GetData} userName={user.displayName} />
+          <SendMessage user={user} ChannelSelection={ChannelSelection} />
+        </div>
+      ) : null}
     </div>
   );
 };

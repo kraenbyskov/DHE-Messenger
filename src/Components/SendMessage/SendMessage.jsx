@@ -1,8 +1,10 @@
 import React from "react";
 import { Form, Textarea, Button } from "../InputFields/Input";
 import { firebase } from "../../Global/Firebase/config";
+import Style from "./SendMessage.module.scss";
 
-const SendMessage = ({ userName, ChannelSelection }) => {
+const SendMessage = ({ user, ChannelSelection }) => {
+  console.log("SendMessage -> user", user);
   const onSubmit = (data) => {
     var today = new Date();
     var time =
@@ -21,16 +23,19 @@ const SendMessage = ({ userName, ChannelSelection }) => {
       .collection("Messages");
 
     ref.doc().set({
-      User: userName,
+      User: user.displayName,
+      Photo: user.photoURL,
       Message: data.Message,
       Date: date + " " + time,
     });
   };
   return (
-    <Form onSubmit={onSubmit}>
-      <Textarea name="Message" placeholder="Message" />
-      <Button name="button" />
-    </Form>
+    <div className={Style.SendMessage}>
+      <Form onSubmit={onSubmit}>
+        <Textarea name="Message" placeholder="Message" />
+        <Button name="button" />
+      </Form>
+    </div>
   );
 };
 

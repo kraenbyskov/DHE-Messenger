@@ -1,0 +1,36 @@
+.SendMessage {
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+
+    form {
+        display: grid;
+        grid-template-columns: 80% 20%;
+
+        textarea,
+        input {
+
+            &:focus {
+                outline: 0;
+            }
+        }
+
+        textarea {
+            width: 100%;
+            padding: 0px;
+            margin: 0px;
+            border: 0px;
+            resize: none;
+
+        }
+
+        input {
+            padding: 0px;
+            margin: 0px;
+        }
+
+    }
+
+
+
+}

@@ -10,9 +10,8 @@ const Textarea = (props) => {
         className={Input}
         name={name}
         id=""
-        cols="30"
         placeholder={placeholder}
-        rows="10"
+        rows="2"
         ref={register({
           required: {
             value: true,
