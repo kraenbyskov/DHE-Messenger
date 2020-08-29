@@ -13,11 +13,13 @@ import "./Global/sass/global.scss";
 
 function App(props) {
   const { signInWithGoogle, signOut, user } = props;
-  const [UserData, SetUserData] = useState();
+  const [UserData, SetUserData] = useState("hans");
 
   useEffect(() => {
     GetUserData(user, SetUserData);
   }, [user]);
+
+  console.log(UserData);
 
   return (
     <BrowserRouter>
