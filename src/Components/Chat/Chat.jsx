@@ -37,7 +37,7 @@ const Chat = (props) => {
   return (
     <div className={ChatStyle}>
       {ChannelSelection ? (
-        <div>
+        <div style={{ width: "100%", position: "relative" }}>
           <DisplayMessages Data={GetData} userName={user.displayName} />
           <SendMessage user={user} ChannelSelection={ChannelSelection} />
         </div>
