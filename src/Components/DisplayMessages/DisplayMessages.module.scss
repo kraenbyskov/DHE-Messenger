@@ -1,0 +1,18 @@
+.MessageRight {
+    text-align: right;
+}
+
+// .MessageLeft {}
+
+
+.MessageRight,
+.MessageLeft {
+    margin: 10px;
+    padding: 0px 10px;
+    border: 2px solid black;
+
+    p {
+        margin: 5px;
+    }
+
+}

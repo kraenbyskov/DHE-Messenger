@@ -2,24 +2,47 @@ import React, { useEffect, useState } from "react";
 import { ChatStyle } from "./Chat.module.scss";
 import { firebase } from "../../Global/Firebase/config";
 import "firebase/auth";
+import DisplayMessages from "../DisplayMessages/DisplayMessages";
+import SendMessage from "../SendMessage/SendMessage";
 
-const Chat = () => {
+const Chat = (props) => {
+  const { user, ChannelSelection } = props;
+  console.log("Chat -> ChannelSelection", ChannelSelection);
   const [GetData, setGetData] = useState(null);
 
-  const ref = firebase.firestore().collection("pokemon");
-
-  const onCollection = (querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-      setGetData(doc.data());
-    });
-  };
-
   useEffect(() => {
-    ref.onSnapshot(onCollection);
-    // eslint-disable-next-line
-  }, []);
+    if (ChannelSelection) {
+      const ref = firebase
+        .firestore()
+        .collection("Channels")
+        .doc(ChannelSelection)
+        .collection("Messages")
+        .orderBy("Date");
+      const onCollection = (querySnapshot) => {
+        const Data = [];
+        querySnapshot.forEach((doc) => {
+          const { User, Message } = doc.data();
+          Data.push({
+            id: doc.id,
+            Message,
+            User,
+          });
+          setGetData({ Data });
+        });
+      };
+      ref.onSnapshot(onCollection);
+    }
+  }, [ChannelSelection]);
 
-  return <div className={ChatStyle}>This is the chat windows</div>;
+  return (
+    <div className={ChatStyle}>
+      <DisplayMessages Data={GetData} userName={user.displayName} />
+      <SendMessage
+        userName={user.displayName}
+        ChannelSelection={ChannelSelection}
+      />
+    </div>
+  );
 };
 
 export default Chat;
