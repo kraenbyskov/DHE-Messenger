@@ -23,8 +23,7 @@ const SendMessage = ({ user, ChannelSelection }) => {
       .collection("Messages");
 
     ref.doc().set({
-      User: user.displayName,
-      Photo: user.photoURL,
+      User: "hans",
       Message: data.Message,
       Date: date + " " + time,
     });
