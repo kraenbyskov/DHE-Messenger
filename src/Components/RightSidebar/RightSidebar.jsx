@@ -4,6 +4,7 @@ import List from "@material-ui/core/List";
 import { makeStyles } from "@material-ui/core/styles";
 import { firebase } from "../../Global/Firebase/config";
 
+import Typography from "@material-ui/core/Typography";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -26,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
 const RightSidebar = ({ ChannelSelection }) => {
   const ref = firebase.firestore().collection("Channels").doc(ChannelSelection);
   const [Data, setData] = useState(null);
-  console.log("RightSidebar -> Data", Data);
 
   useEffect(() => {
     ref.get().then((doc) => {
@@ -51,12 +51,25 @@ const RightSidebar = ({ ChannelSelection }) => {
       anchor="right"
     >
       <List>
-        <ListItem button>
+        <p>Admin</p>
+        <ListItem>
           <ListItemIcon>
             <PersonIcon />
           </ListItemIcon>
           <ListItemText primary={Data && Data.Admin} />
         </ListItem>
+        <p>Users</p>
+
+        {Data
+          ? Data.Users.map((user) => (
+              <ListItem key={user}>
+                <ListItemIcon>
+                  <PersonIcon />
+                </ListItemIcon>
+                <ListItemText primary={user} />
+              </ListItem>
+            ))
+          : null}
       </List>
     </Drawer>
   );

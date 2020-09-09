@@ -39,10 +39,9 @@ const SendMessage = ({ user, ChannelSelection }) => {
   };
   return (
     <div className={Style.SendMessage}>
-      <form autocomplete="off" onSubmit={handleSubmit(onSubmit)}>
+      <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
         <TextField
           id="Message"
-          autoComplete={false}
           placeholder="Message"
           name="Message"
           inputRef={register}

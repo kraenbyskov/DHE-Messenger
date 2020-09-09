@@ -43,6 +43,7 @@ const Chat = (props) => {
           <DisplayMessages
             Data={GetData}
             userName={localStorage.getItem("Username")}
+            ChannelSelection={ChannelSelection}
           />
           <SendMessage user={user} ChannelSelection={ChannelSelection} />
         </>
