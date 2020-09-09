@@ -37,6 +37,7 @@ const RightSidebar = ({ ChannelSelection }) => {
         console.log("No such document!");
       }
     });
+    // eslint-disable-next-line
   }, []);
 
   const classes = useStyles();
