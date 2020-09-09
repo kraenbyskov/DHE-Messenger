@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { firebase } from "../../Global/Firebase/config";
 
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import ChatBubbleOutlineOutlinedIcon from "@material-ui/icons/ChatBubbleOutlineOutlined";
+
 const ListOfChannels = ({ SelectChannel }) => {
   const [ListAllChannels, setListAllChannels] = useState();
 
@@ -26,9 +31,15 @@ const ListOfChannels = ({ SelectChannel }) => {
     <div>
       {ListAllChannels &&
         ListAllChannels.Data.map(({ ChannelName }) => (
-          <div>
-            <p onClick={() => SelectChannel(ChannelName)}>{ChannelName}</p>
-          </div>
+          <ListItem button key={ChannelName}>
+            <ListItemIcon>
+              <ChatBubbleOutlineOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary={ChannelName}
+              onClick={() => SelectChannel(ChannelName)}
+            />
+          </ListItem>
         ))}
     </div>
   );

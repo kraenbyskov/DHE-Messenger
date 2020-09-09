@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { ChatStyle } from "./Chat.module.scss";
 import { firebase } from "../../Global/Firebase/config";
 import "firebase/auth";
+import { Container } from "@material-ui/core";
 import DisplayMessages from "../Chat/DisplayMessages/DisplayMessages";
 import SendMessage from "../Chat/SendMessage/SendMessage";
+
+import style from "./Chat.module.scss";
 
 const Chat = (props) => {
   const { user, ChannelSelection } = props;
@@ -35,14 +37,14 @@ const Chat = (props) => {
   }, [ChannelSelection]);
 
   return (
-    <div className={ChatStyle}>
+    <Container component="main" className={style.Chat}>
       {ChannelSelection ? (
-        <div style={{ width: "100%", position: "relative" }}>
+        <>
           <DisplayMessages Data={GetData} userName={"hans"} />
           <SendMessage user={user} ChannelSelection={ChannelSelection} />
-        </div>
+        </>
       ) : null}
-    </div>
+    </Container>
   );
 };
 

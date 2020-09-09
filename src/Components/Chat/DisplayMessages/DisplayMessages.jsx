@@ -1,29 +1,58 @@
 import React from "react";
 import Style from "./DisplayMessages.module.scss";
 
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    width: "auto",
+    padding: "8px 16px",
+    display: "inline-block",
+    color: theme.palette.text.secondary,
+  },
+}));
+
 const Messages = ({ Photo, Message, MessageStyle }) => {
+  const classes = useStyles();
   return (
-    <div className={MessageStyle}>
-      <p>
+    <Grid
+      style={{
+        padding: "8px",
+        display: "flex",
+        justifyContent: MessageStyle.flex,
+      }}
+      item
+      xs={12}
+    >
+      <Paper
+        elevation={0}
+        className={classes.paper}
+        style={{ background: MessageStyle.Background }}
+      >
         <span
           className={Style.MessagePhoto}
           style={{ backgroundImage: `url("${Photo}")` }}
         />
         {Message}
-      </p>
-    </div>
+      </Paper>
+    </Grid>
   );
 };
 
 const DisplayMessages = ({ Data, userName }) => {
-  console.log(Data);
+  const classes = useStyles();
   return (
-    <div style={{ marginBottom: "100px" }}>
+    <div className={classes.root}>
       {Data
         ? Data.Data.map(({ User, Message, Photo }) =>
             userName === User ? (
               <Messages
-                MessageStyle={Style.MessageRight}
+                MessageStyle={{ flex: "flex-end", Background: "#3f51b5 " }}
                 Message={Message}
                 Photo={Photo}
               />
@@ -31,7 +60,7 @@ const DisplayMessages = ({ Data, userName }) => {
               <Messages
                 Message={Message}
                 Photo={Photo}
-                MessageStyle={Style.MessageLeft}
+                MessageStyle={{ flex: "flex-start", Background: "#f1f0f0" }}
               />
             )
           )

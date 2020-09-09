@@ -1,18 +1,44 @@
 import React, { useState } from "react";
-import { LeftSidebarStyle } from "./LeftSidebar.module.scss";
+
+import Drawer from "@material-ui/core/Drawer";
 import AddNewChannnel from "../LeftSidebar/AddNewChannel";
 import ListOfChannels from "../LeftSidebar/ListOfChannels";
+import { makeStyles } from "@material-ui/core/styles";
+
+import List from "@material-ui/core/List";
+
+const drawerWidth = "auto";
+
+const useStyles = makeStyles((theme) => ({
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    position: "relative",
+    width: drawerWidth,
+  },
+}));
 
 const LeftSidebar = ({ SelectChannel }) => {
-  const [AddChannelWindow, setAddChannelWindow] = useState(false);
+  const [AddChannelWindow, setAddChannelWindow] = useState(true);
+  const classes = useStyles();
+
   return (
-    <div className={LeftSidebarStyle}>
-      <h3 onClick={() => setAddChannelWindow(true)}>Add New Channel</h3>
-      {AddChannelWindow ? (
-        <AddNewChannnel setAddChannelWindow={setAddChannelWindow} />
-      ) : null}
-      <ListOfChannels SelectChannel={SelectChannel} />
-    </div>
+    <Drawer
+      className={classes.drawer}
+      variant="permanent"
+      classes={{
+        paper: classes.drawerPaper,
+      }}
+    >
+      <List>
+        <ListOfChannels SelectChannel={SelectChannel} />
+        {AddChannelWindow ? (
+          <AddNewChannnel setAddChannelWindow={setAddChannelWindow} />
+        ) : null}
+      </List>
+    </Drawer>
   );
 };
 

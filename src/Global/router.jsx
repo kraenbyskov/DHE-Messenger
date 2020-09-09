@@ -1,10 +1,10 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { Routes } from "./routes";
 import { Helmet } from "react-helmet";
 
 const Router = (props) => {
-  const data = props.loginData;
+  const { UserData } = props;
   return (
     <Route
       render={({ location }) => {
@@ -16,12 +16,7 @@ const Router = (props) => {
                 path={path}
                 exact={exact}
                 render={(props) => (
-                  <Component
-                    {...props}
-                    location={location}
-                    loginData={data}
-                    name={name}
-                  >
+                  <Component {...props} location={location} UserData={UserData}>
                     <Helmet>
                       <title>{name}</title>
                     </Helmet>

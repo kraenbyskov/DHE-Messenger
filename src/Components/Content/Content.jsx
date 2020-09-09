@@ -10,7 +10,6 @@ const Content = ({ children }) => {
               ...{
                 ...child.props,
                 key: child.props.name,
-                message: "a Goat",
               },
             })
           : child;
