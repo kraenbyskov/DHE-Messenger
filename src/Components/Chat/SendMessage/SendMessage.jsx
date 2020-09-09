@@ -5,25 +5,12 @@ import { useForm } from "react-hook-form";
 
 import { firebase } from "../../../Global/Firebase/config";
 import Style from "./SendMessage.module.scss";
+import getTime from "./getTime";
 
 const SendMessage = ({ user, ChannelSelection }) => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => {
-    var today = new Date();
-    var time =
-      today.getHours() +
-      ":" +
-      (today.getMinutes() < 10 ? "0" : "") +
-      today.getMinutes() +
-      ":" +
-      (today.getSeconds() < 10 ? "0" : "") +
-      today.getSeconds();
-    var date =
-      today.getFullYear() +
-      "-" +
-      (today.getMonth() + 1) +
-      "-" +
-      today.getDate();
+  const onSubmit = (data, e) => {
+    const DateTime = getTime();
 
     const ref = firebase
       .firestore()
@@ -34,8 +21,9 @@ const SendMessage = ({ user, ChannelSelection }) => {
     ref.doc().set({
       User: localStorage.getItem("Username"),
       Message: data.Message,
-      Date: date + "-" + time,
+      Date: DateTime,
     });
+    e.target.reset();
   };
   return (
     <div className={Style.SendMessage}>

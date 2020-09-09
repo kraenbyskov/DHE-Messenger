@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -14,8 +14,21 @@ const useStyles = makeStyles((theme) => ({
 
 const DisplayMessages = ({ Data, userName, ChannelSelection }) => {
   const classes = useStyles();
+
+  const messagesEndRef = React.createRef();
+
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView();
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+    // eslint-disable-next-line
+  }, [Data]);
+
   return (
     <div className={classes.root}>
+      {/* <p onClick={() => }>Tryk på mig</p> */}
       {Data
         ? Data.Data.map(({ User, Message, id }) =>
             userName === User ? (
@@ -31,6 +44,7 @@ const DisplayMessages = ({ Data, userName, ChannelSelection }) => {
             )
           )
         : null}
+      <div ref={messagesEndRef} />
     </div>
   );
 };

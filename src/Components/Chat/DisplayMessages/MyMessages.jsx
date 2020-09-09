@@ -42,6 +42,7 @@ const MyMessages = ({ userName, Message, id, Channel }) => {
 
   const DeleteMessage = () => {
     ref.delete();
+    console.log("error");
   };
 
   const classes = useStyles();
@@ -52,7 +53,7 @@ const MyMessages = ({ userName, Message, id, Channel }) => {
           {userName}
         </Typography>
         <Paper
-          onClick={() => setShowDeleteButton(true)}
+          onClick={() => setShowDeleteButton(ShowDeleteButton ? false : true)}
           elevation={0}
           className={classes.paper}
         >
@@ -61,8 +62,8 @@ const MyMessages = ({ userName, Message, id, Channel }) => {
           </Typography>
         </Paper>
         {ShowDeleteButton ? (
-          <IconButton aria-label="delete">
-            <DeleteIcon onBlur={() => DeleteMessage()} />
+          <IconButton onClick={() => DeleteMessage()} aria-label="delete">
+            <DeleteIcon />
           </IconButton>
         ) : null}
       </div>
