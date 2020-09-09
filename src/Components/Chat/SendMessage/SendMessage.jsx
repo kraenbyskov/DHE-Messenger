@@ -23,7 +23,7 @@ const SendMessage = ({ user, ChannelSelection }) => {
       .collection("Messages");
 
     ref.doc().set({
-      User: "hans",
+      User: localStorage.getItem("Username"),
       Message: data.Message,
       Date: date + " " + time,
     });

@@ -8,6 +8,7 @@ import Grid from "@material-ui/core/Grid";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    marginBottom: "50px",
   },
   paper: {
     width: "auto",
@@ -32,7 +33,10 @@ const Messages = ({ Photo, Message, MessageStyle }) => {
       <Paper
         elevation={0}
         className={classes.paper}
-        style={{ background: MessageStyle.Background }}
+        style={{
+          background: MessageStyle.Background,
+          color: MessageStyle.Color,
+        }}
       >
         <span
           className={Style.MessagePhoto}
@@ -45,6 +49,7 @@ const Messages = ({ Photo, Message, MessageStyle }) => {
 };
 
 const DisplayMessages = ({ Data, userName }) => {
+  console.log("DisplayMessages -> Data", Data);
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -52,7 +57,11 @@ const DisplayMessages = ({ Data, userName }) => {
         ? Data.Data.map(({ User, Message, Photo }) =>
             userName === User ? (
               <Messages
-                MessageStyle={{ flex: "flex-end", Background: "#3f51b5 " }}
+                MessageStyle={{
+                  flex: "flex-end",
+                  Background: "#3f51b5 ",
+                  Color: "white",
+                }}
                 Message={Message}
                 Photo={Photo}
               />

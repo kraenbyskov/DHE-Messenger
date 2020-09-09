@@ -11,7 +11,7 @@ const AddNewChannnel = ({ setAddChannelWindow }) => {
 
     ref.doc(data.ChannelName).set({
       ChannelName: data.ChannelName,
-      Admin: "peter",
+      Admin: localStorage.getItem("Username"),
     });
   };
 
