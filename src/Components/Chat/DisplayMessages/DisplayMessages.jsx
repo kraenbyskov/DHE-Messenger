@@ -1,5 +1,4 @@
 import React from "react";
-import Style from "./DisplayMessages.module.scss";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -10,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     marginBottom: "50px",
   },
+
   paper: {
     width: "auto",
     padding: "8px 16px",
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Messages = ({ Photo, Message, MessageStyle }) => {
+const Messages = ({ Photo, userName, Message, MessageStyle }) => {
   const classes = useStyles();
   return (
     <Grid
@@ -30,26 +30,24 @@ const Messages = ({ Photo, Message, MessageStyle }) => {
       item
       xs={12}
     >
-      <Paper
-        elevation={0}
-        className={classes.paper}
-        style={{
-          background: MessageStyle.Background,
-          color: MessageStyle.Color,
-        }}
-      >
-        <span
-          className={Style.MessagePhoto}
-          style={{ backgroundImage: `url("${Photo}")` }}
-        />
-        {Message}
-      </Paper>
+      <div>
+        <p style={{ fontSize: "10px", margin: "4px" }}>{userName}</p>
+        <Paper
+          elevation={0}
+          className={classes.paper}
+          style={{
+            background: MessageStyle.Background,
+            color: MessageStyle.Color,
+          }}
+        >
+          <p style={{ margin: "4px 0px" }}>{Message}</p>
+        </Paper>
+      </div>
     </Grid>
   );
 };
 
 const DisplayMessages = ({ Data, userName }) => {
-  console.log("DisplayMessages -> Data", Data);
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -64,11 +62,13 @@ const DisplayMessages = ({ Data, userName }) => {
                 }}
                 Message={Message}
                 Photo={Photo}
+                userName={User}
               />
             ) : (
               <Messages
                 Message={Message}
                 Photo={Photo}
+                userName={User}
                 MessageStyle={{ flex: "flex-start", Background: "#f1f0f0" }}
               />
             )

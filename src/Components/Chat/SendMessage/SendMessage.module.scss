@@ -1,33 +1,19 @@
 .SendMessage {
     width: 60%;
     position: fixed;
-    bottom: 0px;
+    bottom: 10px;
+    background: white;
 
     form {
         display: grid;
-        grid-template-columns: 80% 20%;
+        grid-template-columns: 70% 20%;
+        gap: 20px;
 
-        textarea,
-        input {
 
-            &:focus {
-                outline: 0;
-            }
-        }
 
-        textarea {
-            width: 100%;
-            padding: 0px;
-            margin: 0px;
-            border: 0px;
-            resize: none;
 
-        }
 
-        input {
-            padding: 0px;
-            margin: 0px;
-        }
+
 
     }
 

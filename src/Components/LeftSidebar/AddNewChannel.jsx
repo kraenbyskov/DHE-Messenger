@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 const AddNewChannnel = ({ setAddChannelWindow }) => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    console.log("onSubmit -> data", data);
     const ref = firebase.firestore().collection("Channels");
 
     ref.doc(data.ChannelName).set({

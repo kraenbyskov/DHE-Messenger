@@ -9,7 +9,6 @@ import style from "./Chat.module.scss";
 
 const Chat = (props) => {
   const { user, ChannelSelection } = props;
-  console.log("Chat -> user", user);
   const [GetData, setGetData] = useState(null);
 
   useEffect(() => {

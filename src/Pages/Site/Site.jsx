@@ -7,7 +7,7 @@ import RightSidebar from "../../Components/RightSidebar/RightSidebar";
 import Chat from "../../Components/Chat/Chat";
 
 const Site = (props) => {
-  const [ChannelSelection, setChannelSelection] = useState("Test kanal");
+  const [ChannelSelection, setChannelSelection] = useState("Ny Kanal");
   return (
     <>
       {localStorage.getItem("Username") ? (
