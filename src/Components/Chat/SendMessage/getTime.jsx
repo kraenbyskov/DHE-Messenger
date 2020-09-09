@@ -1,5 +1,3 @@
-import React from "react";
-
 const GetTime = () => {
   var today = new Date();
   var time =
