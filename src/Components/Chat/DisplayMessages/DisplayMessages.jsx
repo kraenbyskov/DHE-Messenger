@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
 
   paper: {
     width: "auto",
-    padding: "8px 16px",
+    padding: "4px 8px",
     display: "inline-block",
     color: theme.palette.text.secondary,
   },
@@ -23,7 +23,7 @@ const Messages = ({ Photo, userName, Message, MessageStyle }) => {
   return (
     <Grid
       style={{
-        padding: "8px",
+        padding: "4px",
         display: "flex",
         justifyContent: MessageStyle.flex,
       }}

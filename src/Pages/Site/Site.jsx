@@ -15,7 +15,7 @@ const Site = (props) => {
           <Header signOut={props.signOut} user={props.user} />
           <LeftSidebar SelectChannel={setChannelSelection} />
           <Chat ChannelSelection={ChannelSelection} />
-          <RightSidebar />
+          <RightSidebar ChannelSelection={ChannelSelection} />
         </Content>
       ) : (
         <Redirect to="/signIn" />
