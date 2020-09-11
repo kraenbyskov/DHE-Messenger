@@ -7,6 +7,8 @@ import { firebase } from "../../Global/Firebase/config";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
+import ListSubheader from "@material-ui/core/ListSubheader";
+
 import DeleteChannel from "./DeleteChannel";
 import EditChannel from "./EditChannel";
 
@@ -54,14 +56,24 @@ const RightSidebar = ({ ChannelSelection }) => {
       anchor="right"
     >
       <List>
-        <p>Admin</p>
+        <List
+          subheader={<ListSubheader>{ChannelSelection}</ListSubheader>}
+          className={classes.root}
+        ></List>
+        <List
+          subheader={<ListSubheader>Admin</ListSubheader>}
+          className={classes.root}
+        ></List>
         <ListItem>
           <ListItemIcon>
             <PersonIcon />
           </ListItemIcon>
           <ListItemText primary={Data && Data.Admin} />
         </ListItem>
-        <p>Users</p>
+        <List
+          subheader={<ListSubheader>Users</ListSubheader>}
+          className={classes.root}
+        ></List>
 
         {Data &&
           Data.Users &&

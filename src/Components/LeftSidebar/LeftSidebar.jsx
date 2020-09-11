@@ -4,6 +4,7 @@ import Drawer from "@material-ui/core/Drawer";
 import AddNewChannnel from "../LeftSidebar/AddNewChannel";
 import ListOfChannels from "../LeftSidebar/ListOfChannels";
 import { makeStyles } from "@material-ui/core/styles";
+import { LeftSidebarStyle } from "./LeftSidebar.module.scss";
 
 import List from "@material-ui/core/List";
 
@@ -25,20 +26,22 @@ const LeftSidebar = ({ SelectChannel }) => {
   const classes = useStyles();
 
   return (
-    <Drawer
-      className={classes.drawer}
-      variant="permanent"
-      classes={{
-        paper: classes.drawerPaper,
-      }}
-    >
-      <List>
-        <ListOfChannels SelectChannel={SelectChannel} />
-        {AddChannelWindow ? (
-          <AddNewChannnel setAddChannelWindow={setAddChannelWindow} />
-        ) : null}
-      </List>
-    </Drawer>
+    <div className={LeftSidebarStyle}>
+      <Drawer
+        className={classes.drawer}
+        variant="permanent"
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+      >
+        <List>
+          <ListOfChannels SelectChannel={SelectChannel} />
+          {AddChannelWindow ? (
+            <AddNewChannnel setAddChannelWindow={setAddChannelWindow} />
+          ) : null}
+        </List>
+      </Drawer>
+    </div>
   );
 };
 
