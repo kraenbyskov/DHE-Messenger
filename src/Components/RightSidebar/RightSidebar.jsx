@@ -7,12 +7,14 @@ import { firebase } from "../../Global/Firebase/config";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
+import DeleteChannel from "./DeleteChannel";
+import EditChannel from "./EditChannel";
 
 import PersonIcon from "@material-ui/icons/Person";
 
 const drawerWidth = "auto";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
@@ -25,7 +27,9 @@ const useStyles = makeStyles((theme) => ({
 
 const RightSidebar = ({ ChannelSelection }) => {
   const ref = firebase.firestore().collection("Channels").doc(ChannelSelection);
+  console.log("RightSidebar -> ChannelSelection", ChannelSelection);
   const [Data, setData] = useState(null);
+  console.log("RightSidebar -> Data", Data);
 
   useEffect(() => {
     ref.get().then((doc) => {
@@ -37,7 +41,7 @@ const RightSidebar = ({ ChannelSelection }) => {
       }
     });
     // eslint-disable-next-line
-  }, []);
+  }, [ChannelSelection]);
 
   const classes = useStyles();
   return (
@@ -70,6 +74,12 @@ const RightSidebar = ({ ChannelSelection }) => {
             </ListItem>
           ))}
       </List>
+      {Data && Data.Admin === localStorage.getItem("Username") ? (
+        <List>
+          <DeleteChannel Channel={ChannelSelection} />
+          <EditChannel />
+        </List>
+      ) : null}
     </Drawer>
   );
 };

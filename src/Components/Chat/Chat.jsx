@@ -22,12 +22,12 @@ const Chat = (props) => {
       const onCollection = (querySnapshot) => {
         const Data = [];
         querySnapshot.forEach((doc) => {
-          const { User, Message, Photo } = doc.data();
+          const { User, Message, NewChannelMessage } = doc.data();
           Data.push({
             id: doc.id,
             Message,
             User,
-            Photo,
+            NewChannelMessage,
           });
           setGetData({ Data });
         });
