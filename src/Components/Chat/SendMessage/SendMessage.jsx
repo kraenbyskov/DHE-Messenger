@@ -5,13 +5,10 @@ import { useForm } from "react-hook-form";
 
 import { firebase } from "../../../Global/Firebase/config";
 import Style from "./SendMessage.module.scss";
-import getTime from "./getTime";
 
 const SendMessage = ({ user, ChannelSelection }) => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data, e) => {
-    const DateTime = getTime();
-
     const ref = firebase
       .firestore()
       .collection("Channels")
@@ -21,7 +18,7 @@ const SendMessage = ({ user, ChannelSelection }) => {
     ref.doc().set({
       User: localStorage.getItem("Username"),
       Message: data.Message,
-      Date: DateTime,
+      Date: new Date(),
     });
     e.target.reset();
   };

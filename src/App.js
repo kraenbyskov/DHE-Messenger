@@ -3,7 +3,7 @@ import "./Global/sass/global.scss";
 import Router from "./Global/router";
 import { BrowserRouter } from "react-router-dom";
 
-function App(props) {
+function App() {
   const [UserData, SetUserData] = useState();
 
   useEffect(() => {

@@ -59,16 +59,16 @@ const RightSidebar = ({ ChannelSelection }) => {
         </ListItem>
         <p>Users</p>
 
-        {Data
-          ? Data.Users.map((user) => (
-              <ListItem key={user}>
-                <ListItemIcon>
-                  <PersonIcon />
-                </ListItemIcon>
-                <ListItemText primary={user} />
-              </ListItem>
-            ))
-          : null}
+        {Data &&
+          Data.Users &&
+          Data.Users.map((user) => (
+            <ListItem key={user}>
+              <ListItemIcon>
+                <PersonIcon />
+              </ListItemIcon>
+              <ListItemText primary={user} />
+            </ListItem>
+          ))}
       </List>
     </Drawer>
   );
