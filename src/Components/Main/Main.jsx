@@ -1,9 +1,13 @@
 import React from "react";
-import { MainStyle } from "./Main.module.scss";
+import styled from "styled-components";
+
+const MainContainer = styled.div`
+  height: auto;
+`;
 
 const Main = ({ children, signOut, user, signInWithGoogle }) => {
   return (
-    <div className={MainStyle}>
+    <MainContainer>
       {React.Children.map(children, (child) => {
         return child.props
           ? React.createElement(child.type, {
@@ -17,7 +21,7 @@ const Main = ({ children, signOut, user, signInWithGoogle }) => {
             })
           : child;
       })}
-    </div>
+    </MainContainer>
   );
 };
 

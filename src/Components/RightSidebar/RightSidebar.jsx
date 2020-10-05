@@ -27,11 +27,9 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const RightSidebar = ({ ChannelSelection }) => {
+const RightSidebar = ({ ChannelSelection, setEditChannelsDisplay }) => {
   const ref = firebase.firestore().collection("Channels").doc(ChannelSelection);
-  console.log("RightSidebar -> ChannelSelection", ChannelSelection);
   const [Data, setData] = useState(null);
-  console.log("RightSidebar -> Data", Data);
 
   useEffect(() => {
     ref.get().then((doc) => {
@@ -89,7 +87,7 @@ const RightSidebar = ({ ChannelSelection }) => {
       {Data && Data.Admin === localStorage.getItem("Username") ? (
         <List>
           <DeleteChannel Channel={ChannelSelection} />
-          <EditChannel />
+          <EditChannel setEditChannelsDisplay={setEditChannelsDisplay} />
         </List>
       ) : null}
     </Drawer>

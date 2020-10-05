@@ -4,9 +4,9 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import EditIcon from "@material-ui/icons/Edit";
 
-const EditChannel = () => {
+const EditChannel = ({ setEditChannelsDisplay }) => {
   return (
-    <ListItem button onClick={() => console.log("edit")}>
+    <ListItem button onClick={() => setEditChannelsDisplay(true)}>
       <ListItemIcon>
         <EditIcon />
       </ListItemIcon>

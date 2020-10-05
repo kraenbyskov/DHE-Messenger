@@ -1,9 +1,23 @@
 import React from "react";
-import { ContentStyle } from "./Content.module.scss";
+import styled from "styled-components";
+
+const Container = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-areas:
+    "header   header header"
+    "LeftSidebar   Chat RightSidebar";
+
+  grid-template-rows: var(--Header-Height) var(--Main-Content-Height);
+  grid-template-columns: var(--LeftSidebar-Width) var(--Chat-Width) var(
+      --RightSidebar-Width
+    );
+`;
 
 const Content = ({ children }) => {
   return (
-    <div className={ContentStyle}>
+    <Container>
       {React.Children.map(children, (child) => {
         return child.props
           ? React.createElement(child.type, {
@@ -14,7 +28,7 @@ const Content = ({ children }) => {
             })
           : child;
       })}
-    </div>
+    </Container>
   );
 };
 

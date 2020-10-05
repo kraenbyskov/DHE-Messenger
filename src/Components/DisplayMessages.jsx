@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Messages from "./Message";
 import MyMessages from "./MyMessages";
+import styled from "styled-components";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -11,6 +12,12 @@ const useStyles = makeStyles(() => ({
     marginBottom: "50px",
   },
 }));
+
+const WelcomeMessage = styled.p`
+  text-align: center;
+  font-size: 10px;
+  color: lightgray;
+`;
 
 const DisplayMessages = ({ Data, userName, ChannelSelection }) => {
   const classes = useStyles();
@@ -31,16 +38,7 @@ const DisplayMessages = ({ Data, userName, ChannelSelection }) => {
       {Data
         ? Data.Data.map(({ User, Message, id, NewChannelMessage }) =>
             NewChannelMessage ? (
-              <p
-                key={id}
-                style={{
-                  textAlign: "center",
-                  fontSize: "10px",
-                  color: "lightgray",
-                }}
-              >
-                {NewChannelMessage}
-              </p>
+              <WelcomeMessage key={id}>{NewChannelMessage}</WelcomeMessage>
             ) : userName === User ? (
               <MyMessages
                 key={id}

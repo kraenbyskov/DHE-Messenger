@@ -4,11 +4,30 @@ import Drawer from "@material-ui/core/Drawer";
 import AddNewChannnel from "../LeftSidebar/AddNewChannel";
 import ListOfChannels from "../LeftSidebar/ListOfChannels";
 import { makeStyles } from "@material-ui/core/styles";
-import { LeftSidebarStyle } from "./LeftSidebar.module.scss";
 
 import List from "@material-ui/core/List";
+import styled from "styled-components";
 
 const drawerWidth = "auto";
+
+const LeftSidebarContainer = styled.div`
+  grid-area: LeftSidebar;
+  overflow: scroll;
+
+  &::-webkit-scrollbar {
+    width: 2px;
+
+    &-thumb {
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+      background: lightgray;
+    }
+
+    &-track-piece:end {
+      margin-bottom: 100px;
+    }
+  }
+`;
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
@@ -26,7 +45,7 @@ const LeftSidebar = ({ SelectChannel }) => {
   const classes = useStyles();
 
   return (
-    <div className={LeftSidebarStyle}>
+    <LeftSidebarContainer>
       <Drawer
         className={classes.drawer}
         variant="permanent"
@@ -41,7 +60,7 @@ const LeftSidebar = ({ SelectChannel }) => {
           ) : null}
         </List>
       </Drawer>
-    </div>
+    </LeftSidebarContainer>
   );
 };
 

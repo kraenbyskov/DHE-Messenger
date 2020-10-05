@@ -3,8 +3,21 @@ import React from "react";
 import { Button, TextField } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 
-import { firebase } from "../../../Global/Firebase/config";
-import Style from "./SendMessage.module.scss";
+import { firebase } from "../Global/Firebase/config";
+import styled from "styled-components";
+
+const SendMessageContainer = styled.div`
+  width: 60%;
+  position: fixed;
+  bottom: 10px;
+  background: white;
+
+  form {
+    display: grid;
+    grid-template-columns: 70% 20%;
+    gap: 20px;
+  }
+`;
 
 const SendMessage = ({ user, ChannelSelection }) => {
   const { register, handleSubmit } = useForm();
@@ -23,7 +36,7 @@ const SendMessage = ({ user, ChannelSelection }) => {
     e.target.reset();
   };
   return (
-    <div className={Style.SendMessage}>
+    <SendMessageContainer>
       <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
         <TextField
           id="Message"
@@ -35,7 +48,7 @@ const SendMessage = ({ user, ChannelSelection }) => {
           Send
         </Button>
       </form>
-    </div>
+    </SendMessageContainer>
   );
 };
 

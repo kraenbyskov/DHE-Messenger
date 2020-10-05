@@ -1,11 +1,15 @@
 import React from "react";
 
-import style from "./Header.module.scss";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import styled from "styled-components";
+
+const HeaderContainer = styled.div`
+  grid-area: header;
+`;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,7 +30,7 @@ const Header = () => {
   };
 
   return (
-    <div className={style.HeaderStyle}>
+    <HeaderContainer>
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -40,7 +44,7 @@ const Header = () => {
           <p onClick={logOut}>Click her for at logge ud</p>
         </Toolbar>
       </AppBar>
-    </div>
+    </HeaderContainer>
   );
 };
 

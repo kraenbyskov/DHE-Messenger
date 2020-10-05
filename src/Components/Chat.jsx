@@ -1,11 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { firebase } from "../../Global/Firebase/config";
+import { firebase } from "../Global/Firebase/config";
 import "firebase/auth";
 import { Container } from "@material-ui/core";
-import DisplayMessages from "../Chat/DisplayMessages/DisplayMessages";
-import SendMessage from "../Chat/SendMessage/SendMessage";
+import DisplayMessages from "./DisplayMessages";
+import SendMessage from "./SendMessage";
+import styled from "styled-components";
 
-import style from "./Chat.module.scss";
+const ChatWindow = styled(Container)`
+  overflow: scroll;
+
+  &::-webkit-scrollbar {
+    width: 2px;
+
+    &-thumb {
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+      background: lightgray;
+    }
+
+    &-track-piece:end {
+      margin-bottom: 100px;
+    }
+  }
+`;
 
 const Chat = (props) => {
   const { user, ChannelSelection } = props;
@@ -37,7 +54,7 @@ const Chat = (props) => {
   }, [ChannelSelection]);
 
   return (
-    <Container component="main" className={style.Chat}>
+    <ChatWindow component="main">
       {ChannelSelection ? (
         <>
           <DisplayMessages
@@ -48,7 +65,7 @@ const Chat = (props) => {
           <SendMessage user={user} ChannelSelection={ChannelSelection} />
         </>
       ) : null}
-    </Container>
+    </ChatWindow>
   );
 };
 
