@@ -6,6 +6,9 @@ import { useForm } from "react-hook-form";
 import { firebase } from "../Global/Firebase/config";
 import styled from "styled-components";
 
+import { MessageContext } from "./MessageProvider";
+import { useContext } from "react";
+
 const SendMessageContainer = styled.div`
   width: 60%;
   position: fixed;
@@ -19,20 +22,28 @@ const SendMessageContainer = styled.div`
   }
 `;
 
-const SendMessage = ({ user, ChannelSelection }) => {
+const SendMessage = ({ ChannelSelection }) => {
+  const [GetData] = useContext(MessageContext);
+  console.log("SendMessage -> GetData", GetData);
   const { register, handleSubmit } = useForm();
   const onSubmit = (data, e) => {
     const ref = firebase
       .firestore()
       .collection("Channels")
-      .doc(ChannelSelection)
-      .collection("Messages");
+      .doc(ChannelSelection);
 
-    ref.doc().set({
-      User: localStorage.getItem("Username"),
-      Message: data.Message,
-      Date: new Date(),
+    ref.update({
+      channelLength: GetData.Data.length,
     });
+
+    ref
+      .collection("Messages")
+      .doc()
+      .set({
+        User: localStorage.getItem("Username"),
+        Message: data.Message,
+        Date: new Date(),
+      });
     e.target.reset();
   };
   return (

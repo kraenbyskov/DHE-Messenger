@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { firebase } from "../Global/Firebase/config";
-import "firebase/auth";
+import React, { useContext } from "react";
 import { Container } from "@material-ui/core";
 import DisplayMessages from "./DisplayMessages";
 import SendMessage from "./SendMessage";
 import styled from "styled-components";
+import { MessageContext } from "./MessageProvider";
 
 const ChatWindow = styled(Container)`
   overflow: scroll;
@@ -26,32 +25,7 @@ const ChatWindow = styled(Container)`
 
 const Chat = (props) => {
   const { user, ChannelSelection } = props;
-  const [GetData, setGetData] = useState(null);
-
-  useEffect(() => {
-    if (ChannelSelection) {
-      const ref = firebase
-        .firestore()
-        .collection("Channels")
-        .doc(ChannelSelection)
-        .collection("Messages")
-        .orderBy("Date");
-      const onCollection = (querySnapshot) => {
-        const Data = [];
-        querySnapshot.forEach((doc) => {
-          const { User, Message, NewChannelMessage } = doc.data();
-          Data.push({
-            id: doc.id,
-            Message,
-            User,
-            NewChannelMessage,
-          });
-          setGetData({ Data });
-        });
-      };
-      ref.onSnapshot(onCollection);
-    }
-  }, [ChannelSelection]);
+  const [GetData] = useContext(MessageContext);
 
   return (
     <ChatWindow component="main">

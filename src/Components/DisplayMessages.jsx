@@ -20,6 +20,7 @@ const WelcomeMessage = styled.p`
 `;
 
 const DisplayMessages = ({ Data, userName, ChannelSelection }) => {
+  console.log("DisplayMessages -> Data", Data);
   const classes = useStyles();
 
   const messagesEndRef = React.createRef();

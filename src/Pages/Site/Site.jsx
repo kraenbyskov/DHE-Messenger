@@ -6,6 +6,7 @@ import LeftSidebar from "../../Components/LeftSidebar/LeftSidebar";
 import RightSidebar from "../../Components/RightSidebar/RightSidebar";
 import Chat from "../../Components/Chat";
 import EditChannel from "../../Components/EditChannel";
+import { MessageProvider } from "../../Components/MessageProvider";
 
 const Site = (props) => {
   const [ChannelSelection, setChannelSelection] = useState(
@@ -13,10 +14,9 @@ const Site = (props) => {
   );
 
   const [EditChannelsDisplay, setEditChannelsDisplay] = useState(false);
-  console.log("Site -> EditChannelsDisplay", EditChannelsDisplay);
 
   return (
-    <>
+    <MessageProvider ChannelSelection={ChannelSelection}>
       {localStorage.getItem("Username") ? (
         <Content>
           <Header signOut={props.signOut} user={props.user} />
@@ -34,7 +34,7 @@ const Site = (props) => {
       ) : (
         <Redirect to="/signIn" />
       )}
-    </>
+    </MessageProvider>
   );
 };
 
