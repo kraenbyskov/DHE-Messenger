@@ -1,12 +1,22 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useMemo, useState } from "react";
 import { firebase } from "../Global/Firebase/config";
 
 export const MessageContext = createContext();
+
+const FirestoreData = (Channels) => {
+  return new Promise((resolve, reject) => {});
+};
+
+const FetchMessage = async (setState, Channels) => {
+  const Fecth = await FirestoreData(Channels);
+  setState(Fecth);
+};
 
 export const MessageProvider = (props) => {
   const { ChannelSelection } = props;
   const [GetData, setGetData] = useState(null);
 
+  const value = useMemo(() => ({ GetData, setGetData }), [GetData, setGetData]);
   useEffect(() => {
     if (ChannelSelection) {
       const ref = firebase
@@ -34,7 +44,7 @@ export const MessageProvider = (props) => {
   }, [ChannelSelection]);
 
   return (
-    <MessageContext.Provider value={[GetData, setGetData]}>
+    <MessageContext.Provider value={value}>
       {props.children}
     </MessageContext.Provider>
   );

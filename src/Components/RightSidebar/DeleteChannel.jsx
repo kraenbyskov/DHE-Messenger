@@ -7,9 +7,17 @@ import ListItemText from "@material-ui/core/ListItemText";
 
 const DeleteChannel = ({ Channel }) => {
   const DeleteChannel = () => {
-    const ref = firebase.firestore().collection("Channels").doc(Channel);
-    ref.delete();
-    console.log("error");
+    firebase
+      .firestore()
+      .collection("Channels")
+      .doc(Channel)
+      .delete()
+      .then(function () {
+        console.log("Document successfully deleted!");
+      })
+      .catch(function (error) {
+        console.error("Error removing document: ", error);
+      });
   };
 
   return (

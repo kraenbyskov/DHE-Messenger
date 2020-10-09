@@ -6,8 +6,8 @@ import { useForm } from "react-hook-form";
 import { firebase } from "../Global/Firebase/config";
 import styled from "styled-components";
 
-import { MessageContext } from "./MessageProvider";
 import { useContext } from "react";
+import { MessageContext } from "../Global/MessageProvider";
 
 const SendMessageContainer = styled.div`
   width: 60%;
@@ -23,8 +23,7 @@ const SendMessageContainer = styled.div`
 `;
 
 const SendMessage = ({ ChannelSelection }) => {
-  const [GetData] = useContext(MessageContext);
-  console.log("SendMessage -> GetData", GetData);
+  const { GetData } = useContext(MessageContext);
   const { register, handleSubmit } = useForm();
   const onSubmit = (data, e) => {
     const ref = firebase

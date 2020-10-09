@@ -28,18 +28,23 @@ const useStyles = makeStyles(() => ({
 }));
 
 const RightSidebar = ({ ChannelSelection, setEditChannelsDisplay }) => {
-  const ref = firebase.firestore().collection("Channels").doc(ChannelSelection);
   const [Data, setData] = useState(null);
 
   useEffect(() => {
-    ref.get().then((doc) => {
-      if (doc.exists) {
-        const board = doc.data();
-        setData(board);
-      } else {
-        console.log("No such document!");
-      }
-    });
+    if (ChannelSelection) {
+      const ref = firebase
+        .firestore()
+        .collection("Channels")
+        .doc(ChannelSelection);
+      ref.get().then((doc) => {
+        if (doc.exists) {
+          const board = doc.data();
+          setData(board);
+        } else {
+          console.log("No such document!");
+        }
+      });
+    }
     // eslint-disable-next-line
   }, [ChannelSelection]);
 

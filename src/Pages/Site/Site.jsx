@@ -6,12 +6,10 @@ import LeftSidebar from "../../Components/LeftSidebar/LeftSidebar";
 import RightSidebar from "../../Components/RightSidebar/RightSidebar";
 import Chat from "../../Components/Chat";
 import EditChannel from "../../Components/EditChannel";
-import { MessageProvider } from "../../Components/MessageProvider";
+import { MessageProvider } from "../../Global/MessageProvider";
 
 const Site = (props) => {
-  const [ChannelSelection, setChannelSelection] = useState(
-    "Dette er en helt ny kanal"
-  );
+  const [ChannelSelection, setChannelSelection] = useState(null);
 
   const [EditChannelsDisplay, setEditChannelsDisplay] = useState(false);
 

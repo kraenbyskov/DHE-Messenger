@@ -3,7 +3,7 @@ import { Container } from "@material-ui/core";
 import DisplayMessages from "./DisplayMessages";
 import SendMessage from "./SendMessage";
 import styled from "styled-components";
-import { MessageContext } from "./MessageProvider";
+import { MessageContext } from "../Global/MessageProvider";
 
 const ChatWindow = styled(Container)`
   overflow: scroll;
@@ -25,7 +25,7 @@ const ChatWindow = styled(Container)`
 
 const Chat = (props) => {
   const { user, ChannelSelection } = props;
-  const [GetData] = useContext(MessageContext);
+  const { GetData } = useContext(MessageContext);
 
   return (
     <ChatWindow component="main">
