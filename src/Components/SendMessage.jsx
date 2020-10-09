@@ -32,7 +32,7 @@ const SendMessage = ({ ChannelSelection }) => {
       .doc(ChannelSelection);
 
     ref.update({
-      channelLength: GetData.Data.length,
+      channelLength: GetData.length,
     });
 
     ref
@@ -41,7 +41,7 @@ const SendMessage = ({ ChannelSelection }) => {
       .set({
         User: localStorage.getItem("Username"),
         Message: data.Message,
-        Date: new Date(),
+        Date: firebase.firestore.FieldValue.serverTimestamp(),
       });
     e.target.reset();
   };

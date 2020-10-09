@@ -7,9 +7,18 @@ import RightSidebar from "../../Components/RightSidebar/RightSidebar";
 import Chat from "../../Components/Chat";
 import EditChannel from "../../Components/EditChannel";
 import { MessageProvider } from "../../Global/MessageProvider";
+import firebase from "firebase/app";
+import "firebase/firestore";
 
 const Site = (props) => {
-  const [ChannelSelection, setChannelSelection] = useState(null);
+  const firestore = firebase.firestore();
+  const messagesRef = firestore.collection("Channels");
+  const [ChannelSelection, setChannelSelection] = useState(
+    messagesRef.Cd.segments[0]
+  );
+
+  // const [segments] = messagesRef;
+  // console.log("Site -> segments", segments);
 
   const [EditChannelsDisplay, setEditChannelsDisplay] = useState(false);
 

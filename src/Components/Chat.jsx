@@ -25,14 +25,12 @@ const ChatWindow = styled(Container)`
 
 const Chat = (props) => {
   const { user, ChannelSelection } = props;
-  const { GetData } = useContext(MessageContext);
 
   return (
     <ChatWindow component="main">
       {ChannelSelection ? (
         <>
           <DisplayMessages
-            Data={GetData}
             userName={localStorage.getItem("Username")}
             ChannelSelection={ChannelSelection}
           />

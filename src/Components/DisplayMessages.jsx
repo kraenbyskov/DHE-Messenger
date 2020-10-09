@@ -1,10 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
 import Messages from "./Message";
 import MyMessages from "./MyMessages";
 import styled from "styled-components";
+import { MessageContext } from "../Global/MessageProvider";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+import firebase from "firebase/app";
+import "firebase/firestore";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -19,7 +23,9 @@ const WelcomeMessage = styled.p`
   color: lightgray;
 `;
 
-const DisplayMessages = ({ Data, userName, ChannelSelection }) => {
+const DisplayMessages = ({ userName, ChannelSelection }) => {
+  const { GetData } = useContext(MessageContext);
+
   const classes = useStyles();
 
   const messagesEndRef = React.createRef();
@@ -31,12 +37,12 @@ const DisplayMessages = ({ Data, userName, ChannelSelection }) => {
   useEffect(() => {
     scrollToBottom();
     // eslint-disable-next-line
-  }, [Data]);
+  }, [GetData]);
 
   return (
     <div className={classes.root}>
-      {Data
-        ? Data.Data.map(({ User, Message, id, NewChannelMessage }) =>
+      {GetData
+        ? GetData.map(({ User, Message, id, NewChannelMessage }) =>
             NewChannelMessage ? (
               <WelcomeMessage key={id}>{NewChannelMessage}</WelcomeMessage>
             ) : userName === User ? (
