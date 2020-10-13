@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -6,8 +6,6 @@ import Messages from "./Message";
 import MyMessages from "./MyMessages";
 import styled from "styled-components";
 import { MessageContext } from "../Global/MessageProvider";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-import firebase from "firebase/app";
 import "firebase/firestore";
 
 const useStyles = makeStyles(() => ({

@@ -17,8 +17,6 @@ const Site = (props) => {
     messagesRef.Cd.segments[0]
   );
 
-  // const [segments] = messagesRef;
-  // console.log("Site -> segments", segments);
 
   const [EditChannelsDisplay, setEditChannelsDisplay] = useState(false);
 

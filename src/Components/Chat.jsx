@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Container } from "@material-ui/core";
 import DisplayMessages from "./DisplayMessages";
 import SendMessage from "./SendMessage";
 import styled from "styled-components";
-import { MessageContext } from "../Global/MessageProvider";
 
 const ChatWindow = styled(Container)`
   overflow: scroll;
@@ -35,7 +34,7 @@ const Chat = (props) => {
             ChannelSelection={ChannelSelection}
           />
           <SendMessage user={user} ChannelSelection={ChannelSelection} />
-        </>
+          </>
       ) : null}
     </ChatWindow>
   );
