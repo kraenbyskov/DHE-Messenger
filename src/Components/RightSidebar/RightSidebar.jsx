@@ -1,50 +1,53 @@
 import React, { useEffect, useState } from "react";
-import Drawer from "@material-ui/core/Drawer";
-import List from "@material-ui/core/List";
-import { makeStyles } from "@material-ui/core/styles";
+
 import { firebase } from "../../Global/Firebase/config";
 
 import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListSubheader from "@material-ui/core/ListSubheader";
+import { ListItemIcon, ListItemText, ListSubheader, makeStyles, List, Drawer } from "@material-ui/core";
+import PersonIcon from "@material-ui/icons/Person";
 
 import DeleteChannel from "./DeleteChannel";
 import EditChannel from "./EditChannel";
 
-import PersonIcon from "@material-ui/icons/Person";
-
-const drawerWidth = "auto";
 
 const useStyles = makeStyles(() => ({
   drawer: {
-    width: drawerWidth,
+    width: "auto",
     flexShrink: 0,
   },
   drawerPaper: {
     position: "relative",
-    width: drawerWidth,
+    width: "auto",
   },
 }));
+
+const FetchRightSideData = (channel, setState) => {
+  const ref = firebase
+    .firestore()
+    .collection("Channels")
+    .doc(channel);
+  ref.get().then((doc) => {
+    if (doc.exists) {
+      const board = doc.data();
+      setState(board);
+    } else {
+      console.log("No such document!");
+    }
+  });
+}
+
+
 
 const RightSidebar = ({ ChannelSelection, setEditChannelsDisplay }) => {
   const [Data, setData] = useState(null);
 
+
+
   useEffect(() => {
     if (ChannelSelection) {
-      const ref = firebase
-        .firestore()
-        .collection("Channels")
-        .doc(ChannelSelection);
-      ref.get().then((doc) => {
-        if (doc.exists) {
-          const board = doc.data();
-          setData(board);
-        } else {
-          console.log("No such document!");
-        }
-      });
+      FetchRightSideData(ChannelSelection, setData);
     }
+    console.log("hey")
     // eslint-disable-next-line
   }, [ChannelSelection]);
 

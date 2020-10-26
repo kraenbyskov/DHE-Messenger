@@ -19,7 +19,7 @@ const AddNewChannnel = () => {
         .doc()
         .set({
           NewChannelMessage: `Welcome to ${data.ChannelName} write the first message`,
-          Date: new Date(),
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
         });
 
       e.target.reset();

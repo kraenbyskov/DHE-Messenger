@@ -9,6 +9,7 @@ import EditChannel from "../../Components/EditChannel";
 import { MessageProvider } from "../../Global/MessageProvider";
 import firebase from "firebase/app";
 import "firebase/firestore";
+import { ChannelProvider } from "../../Global/ChannelProvider";
 
 const Site = (props) => {
   const firestore = firebase.firestore();
@@ -25,7 +26,9 @@ const Site = (props) => {
       {localStorage.getItem("Username") ? (
         <Content>
           <Header signOut={props.signOut} user={props.user} />
+          <ChannelProvider>
           <LeftSidebar SelectChannel={setChannelSelection} />
+          </ChannelProvider>
           <Chat ChannelSelection={ChannelSelection} />
           <RightSidebar
             ChannelSelection={ChannelSelection}

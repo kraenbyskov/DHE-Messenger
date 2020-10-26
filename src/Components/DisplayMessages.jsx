@@ -39,11 +39,13 @@ const DisplayMessages = ({ userName, ChannelSelection }) => {
 
   return (
     <div className={classes.root}>
+
       {GetData
         ? GetData.map(({ User, Message, id, NewChannelMessage }) =>
-            NewChannelMessage ? (
-              <WelcomeMessage key={id}>{NewChannelMessage}</WelcomeMessage>
-            ) : userName === User ? (
+          NewChannelMessage ? (
+            <WelcomeMessage key={id}>{NewChannelMessage}</WelcomeMessage>
+          ) : userName === User ? (
+            <>
               <MyMessages
                 key={id}
                 Channel={ChannelSelection}
@@ -51,10 +53,11 @@ const DisplayMessages = ({ userName, ChannelSelection }) => {
                 id={id}
                 userName={User}
               />
-            ) : (
-              <Messages key={id} Message={Message} id={id} userName={User} />
-            )
-          )
+            </>
+          ) : (
+                <Messages key={id} Message={Message} id={id} userName={User} />
+              )
+        )
         : null}
       <div ref={messagesEndRef} />
     </div>

@@ -6,22 +6,22 @@ import ChatBubbleOutlineOutlinedIcon from "@material-ui/icons/ChatBubbleOutlineO
 import ListItemText from "@material-ui/core/ListItemText";
 
 
-const ChannelButton = ({ChannelName, SelectChannel}) => {
-    return ( 
+const ChannelButton = ({ ChannelName, SelectChannel }) => {
+    return (
 
         <ListItem button key={ChannelName}>
-        <ListItemIcon>
-          <ChatBubbleOutlineOutlinedIcon />
-                            </ListItemIcon>
-                            <ListItemText
-                        primary={ChannelName}
-                        onClick={() =>  SelectChannel(ChannelName)}
-                    />
-       
+            <ListItemIcon>
+                <ChatBubbleOutlineOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText
+                primary={ChannelName}
+                onClick={() => SelectChannel(ChannelName)}
+            />
 
-      </ListItem>
 
-     );
+        </ListItem>
+
+    );
 }
- 
+
 export default ChannelButton;

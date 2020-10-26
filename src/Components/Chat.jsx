@@ -26,7 +26,7 @@ const Chat = (props) => {
   const { user, ChannelSelection } = props;
 
   return (
-    <ChatWindow component="main">
+    <ChatWindow component="main" >
       {ChannelSelection ? (
         <>
           <DisplayMessages
@@ -34,7 +34,7 @@ const Chat = (props) => {
             ChannelSelection={ChannelSelection}
           />
           <SendMessage user={user} ChannelSelection={ChannelSelection} />
-          </>
+        </>
       ) : null}
     </ChatWindow>
   );

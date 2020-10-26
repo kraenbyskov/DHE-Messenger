@@ -41,7 +41,7 @@ const SendMessage = ({ ChannelSelection }) => {
       .set({
         User: localStorage.getItem("Username"),
         Message: data.Message,
-        Date: firebase.firestore.FieldValue.serverTimestamp(),
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       });
     e.target.reset();
   };

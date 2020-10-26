@@ -17,8 +17,12 @@ export const MessageProvider = (props) => {
     .collection("Channels")
     .doc(ChannelSelection)
     .collection("Messages");
-  const query = messagesRef.orderBy("Date");
+
+
+
+  const query = messagesRef.orderBy("createdAt", "asc").limitToLast(10);
   const [messages] = useCollectionData(query, { idField: "id" });
+  console.log("MessageProvider -> messages", messages)
 
   useEffect(() => {
     if (ChannelSelection) {

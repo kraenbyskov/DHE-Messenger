@@ -1,5 +1,5 @@
-import * as firebase from "firebase";
-import "firebase/auth";
+import firebase from 'firebase/app';
+import 'firebase/firestore';   // for cloud firestore
 
 export const Config = {
   apiKey: process.env.REACT_APP_FIREBASE_KEY,

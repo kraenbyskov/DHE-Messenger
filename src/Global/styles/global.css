@@ -1,0 +1,14 @@
+/**
+ * React Website Messenger App
+ * Last update: 31/01/2020
+ * Author: Kræn Byskov kraenbyskov@gmail.com
+ *
+ */
+:root {
+  --Header-Height: 64px;
+  --Main-Content-Height: auto;
+
+  --LeftSidebar-Width: 20%;
+  --Chat-Width: 60%;
+  --RightSidebar-Width: 20%;
+}
