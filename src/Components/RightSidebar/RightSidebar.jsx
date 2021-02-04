@@ -47,7 +47,6 @@ const RightSidebar = ({ ChannelSelection, setEditChannelsDisplay }) => {
     if (ChannelSelection) {
       FetchRightSideData(ChannelSelection, setData);
     }
-    console.log("hey")
     // eslint-disable-next-line
   }, [ChannelSelection]);
 
